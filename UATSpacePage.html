@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--Aouthor Goseph Brooks
+email: gosbrooks@uat.edu
+wk1 assignment, asignment: Launching your UAT space program HTML document tags-->
+<html>
+
+<head>
+    <script src="dataLoader-2.js"></script>
+    <script src="code.js"></script>
+    <script src="class.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+        <title>
+            UATspace Page
+        </title>
+        <script>
+            //creating the variables we need
+            var theTime = new Date();
+            var tempTime = new Date();
+            var time_interval = 5000;
+            var last_iteration = 0;
+            var running = true;
+            var index = 0;
+            var timer;
+
+          //gets data into the array
+            var data = getData();
+
+            //function to load and display data
+            function updateDisplay() {
+                theTime = new Date();
+                var timeRead = data[index].time_seconds;
+                
+                if(timeRead >= 10){
+                    document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                    document.getElementById("data").rows["latitude"].innerHTML = dataRow("latitude", data[index].latitude, " ");
+                    document.getElementById("data").rows["longitude"].innerHTML = dataRow("longitude", data[index].longitude, " ");
+                    document.getElementById("data").rows["gpsSensor_altitude"].innerHTML = dataRow("gpsSensor_altitude", data[index].gpsSensor_altitude, " ");
+                    document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("bmpSensor_altitude", data[index].bmpSensor_altitude, " ");
+                    document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("bmpSensor_pressure", data[index].bmpSensor_pressure, " ");
+                    document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("bmpSensor_temp", data[index].bmpSensor_temp, " ");
+                    document.getElementById("data").rows["digSensor_temp"].innerHTML = dataRow("digSensor_temp", data[index].digSensor_temp, " ");
+                    document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("cssSensor_temp", data[index].cssSensor_temp, " ");
+                    document.getElementById("data").rows["cssSensor_eC02"].innerHTML = dataRow("cssSensor_eC02", data[index].cssSensor_eC02, " ");
+                    document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("cssSensor_TVOC", data[index].cssSensor_TVOC, " ");
+                    document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, " ");
+                    document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX, " ");
+                    document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY, " ");
+                    document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ, " ");
+                    document.getElementById("data").rows["magnetX"].innerHTML = dataRow("magnetX", data[index].magnetX, " ");
+                    document.getElementById("data").rows["magnetY"].innerHTML = dataRow("magnetY", data[index].magnetY, " ");
+                    document.getElementById("data").rows["magnetZ"].innerHTML = dataRow("magnetZ", data[index].magnetZ, " ");
+                    document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX, " ");
+                    document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY, " ");
+                    document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ, " ");
+
+                    if(index < 500){
+                        index++;
+                    }else{
+                        index = 0;
+                    }
+                }
+                console.log("Display: " + theTime.getHours() + ":" + theTime.getMinutes() + ":" + theTime.getSeconds());
+            }
+        </script>
+</head>
+
+<body>
+    <table>
+       <td><img src="UATspaceLogo-2.jpg"></td> 
+        <td>
+        <h1>
+            UATspace Program
+        </h1>
+         </td>
+    </table>
+    <br>
+    <table id="data" width="70%" border="2">
+        <col style="width: 35%">
+        <col style="width: 35%">
+        <thead>
+           <tr style="font-family: fantasy;"></tr>
+           <th>Data Type</th>
+           <th>Reading</th>
+        </thead>
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gpsSensor_altitude"></tr>
+            <tr id="bmpSensor_altitude"></tr>
+            <tr id="bmpSensor_pressure"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="digSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eC02"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magnetX"></tr>
+            <tr id="magnetY"></tr>
+            <tr id="magnetZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+
+        </tbody>
+    </table>
+         <br>
+         The current time is:<div id="time"></div>
+  
+
+       <br>
+    
+    
+    <button id="Startbutton" onclick="Start();"class="button">Start</button>
+    <button id="Stopbutton" onclick="Stop();" class="Stop">Stop</button> 
+    <br> 
+    <br>
+    <script>//Ids die2 staus from java script craps function</script>
+    <div id="die2Res">Die 2 Status</div>
+    <script>//Ids die1 staus from java script craps function</script>
+    <div id="die1Res">Die 1 Status</div>
+    <script>//Ids dieSum of both dice function staus from java script craps function</script>
+    <div id="dieSum">Dice Sum Status</div>
+    <script>//Ids Crap game staus from java script craps function to determin if you win, lose, or roll again </script>
+    <div id="crapStatus">Craps game Status</div>
+
+    <script>//allows the button to run crap game link from java script craps function</script>
+    <button ondblclick="playCraps()" class="button">Play Craps</button>
+    <br>
+    <br>
+    <button class="button" onclick="playStation();">Play Sounds</button>
+    <br>
+    <br>
+   <script>
+       var fallLuanch = new Mission(100, 100, 100, "Fiona", 15, "0ctober", 2022, 5);
+       var springLuanch = new Mission(79, 50, 92, "Polarius", 12, "April", 2023, 2);
+</script>
+   <button class="button" onclick="luanchFall();">Launch fall</button>
+   <button class="button" onclick="DisplayFall();">Display fall</button>
+    <br>
+    <br>
+    <button class="lgbutton" onclick="goLandingPage()">Go to idex.html</button>
+</body>
+
+
+</html>
